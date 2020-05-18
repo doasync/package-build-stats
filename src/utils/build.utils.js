@@ -52,8 +52,8 @@ const BuildUtils = {
 
   compilePackage({ entry, externals, debug }) {
     const compiler = webpack(makeWebpackConfig({ entry, externals, debug }))
-    const memoryFileSystem = new MemoryFS()
-    compiler.outputFileSystem = memoryFileSystem
+    // DO not use memory
+    const memoryFileSystem = fs
 
     return new Promise((resolve, reject) => {
       compiler.run((err, stats) => {
@@ -181,7 +181,7 @@ const BuildUtils = {
       }
     } else {
       const getAssetStats = asset => {
-        const bundle = path.join(process.cwd(), 'dist', asset.name)
+        const bundle = path.join(process.cwd(), 'files', asset.name)
         const bundleContents = memoryFileSystem.readFileSync(bundle)
         let parseTimes = null
         if (options.calcParse) {
@@ -192,13 +192,15 @@ const BuildUtils = {
         const [fullName, entryName, extension] = asset.name.match(
           /(.+?)\.bundle\.(.+)$/
         )
-        return {
+        const result = {
           name: entryName,
           type: extension,
           size: asset.size,
           gzip,
           parse: parseTimes,
         }
+        console.log(result)
+        return result
       }
 
       const assetStats = jsonStats.assets

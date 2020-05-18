@@ -19,21 +19,23 @@ const InstallationUtils = {
     return path.join(
       config.tmp,
       'packages',
-      sanitize(`build-${packageName}-${id}`)
+      // Do not randomize folder
+      sanitize(`build-${packageName}`)
     )
   },
 
   async preparePath(packageName) {
     const installPath = InstallationUtils.getInstallPath(packageName)
+    // Do not create files
+    /*
+       await mkdir(config.tmp)
+       await mkdir(installPath)
 
-    await mkdir(config.tmp)
-    await mkdir(installPath)
-
-    fs.writeFileSync(
-      path.join(installPath, 'package.json'),
-      JSON.stringify({ dependencies: {} })
-    )
-
+       fs.writeFileSync(
+         path.join(installPath, 'package.json'),
+         JSON.stringify({ dependencies: {} })
+       )
+       */
     return installPath
   },
 
@@ -98,10 +100,13 @@ const InstallationUtils = {
     debug('install start %s', packageString)
 
     try {
+      // Do not `yarn install`
+      /*
       await exec(command, {
         cwd: installPath,
         maxBuffer: 1024 * 500,
       })
+      */
       debug('install finish %s', packageString)
     } catch (err) {
       console.log(err)
@@ -115,7 +120,8 @@ const InstallationUtils = {
 
   async cleaupPath(installPath) {
     const noop = () => {}
-    await rimraf(installPath, noop)
+    // Do not remove files
+    // await rimraf(installPath, noop)
   },
 }
 

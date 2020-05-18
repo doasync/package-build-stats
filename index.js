@@ -8,6 +8,10 @@ const {
   getAllPackageExports,
 } = require('./src/getPackageExportSizes')
 
+// Check effector
+getBuiltPackageStats('effector', { debug: false })
+
+/*
 server({ port: 3000 }, [
   get('/size', async ctx => {
     const packageString = decodeURIComponent(ctx.query.p)
@@ -52,3 +56,4 @@ server({ port: 3000 }, [
     }
   }),
 ])
+*/

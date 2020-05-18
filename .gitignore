@@ -3,6 +3,7 @@ node_modules
 jspm_packages
 .env
 
+!*files/packages/build-effector/node_modules
 !*fixtures/node_modules
 !*fixtures/node_modules/resolve-test/node_modules
 !*fixtures/node_modules/resolve-test/nested-folder/another-nested-folder/node_modules

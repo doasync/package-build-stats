@@ -3,7 +3,24 @@
   
 This is the function that powers the core of building, minifying and gzipping of packages in bundlephobia.
 
-## Usage
+## New usage
+
+Install
+```bash
+yarn
+```
+
+Replace contents of
+`files/packages/build-effector/node_modules/effector/effector.es.js`
+
+Run
+```bash
+yarn run start
+```
+
+PROFIT!!!!
+
+## Old usage
 
 ```js
 const getBuiltPackageStats = require('package-build-stats')

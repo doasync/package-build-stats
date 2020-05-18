@@ -1,0 +1,1 @@
+const p = require('effector'); console.log(p)

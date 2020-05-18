@@ -1,3 +1,4 @@
+const fs = require('fs')
 const autoprefixer = require('autoprefixer')
 const TerserPlugin = require('terser-webpack-plugin')
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
@@ -140,6 +141,8 @@ function makeWebpackConfig({ entry, externals, debug }) {
     },
     node: builtInNode,
     output: {
+      // Save files
+      path: fs.realpathSync(`${__dirname}/../files`),
       filename: 'bundle.js',
       pathinfo: false,
     },
